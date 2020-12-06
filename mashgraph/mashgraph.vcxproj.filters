@@ -57,5 +57,8 @@
     <Image Include="wood.png">
       <Filter>Исходные файлы</Filter>
     </Image>
+    <Image Include="brickwall.jpg">
+      <Filter>Исходные файлы</Filter>
+    </Image>
   </ItemGroup>
 </Project>

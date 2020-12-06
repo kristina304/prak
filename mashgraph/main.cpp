@@ -22,8 +22,8 @@ void renderCube();
 void renderQuad();
 
 // настройки
-const unsigned int SCR_WIDTH = 600;
-const unsigned int SCR_HEIGHT = 400;
+const unsigned int SCR_WIDTH = 1000;
+const unsigned int SCR_HEIGHT = 800;
 
 // камера
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -106,6 +106,8 @@ int main()
 
     // загрузка текстур
     unsigned int woodTexture = loadTexture("wood.png");
+    unsigned int briksTexture = loadTexture("brickwall.jpg");
+    unsigned int briksnormTexture = loadTexture("brickwall_normal.jpg");
 
     // настраиваем карту глубины FBO
     const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
@@ -137,10 +139,8 @@ int main()
     debugDepthQuad.use();
     debugDepthQuad.setInt("depthMap", 0);
 
-    // параметры освещения
     glm::vec3 lightPos(-2.0f, 4.0f, -1.0f);
 
-    // цикл рендеринга
     while (!glfwWindowShouldClose(window))
     {
         float currentFrame = glfwGetTime();
@@ -150,7 +150,7 @@ int main()
         processInput(window);
 
         // рендеринг
-        glClearColor(0.15f, 0.15f, 0.15f, 1.0f);
+        glClearColor(0.159f, 0.159f, 0.159f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // 1. рендеринг глубины сцены в текстуру (вид - с позиции источника света)
@@ -169,7 +169,7 @@ int main()
         glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, woodTexture);
+        glBindTexture(GL_TEXTURE_2D, briksTexture);
         renderScene(simpleDepthShader);
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -185,24 +185,15 @@ int main()
         glm::mat4 view = camera.GetViewMatrix();
         shader.setMat4("projection", projection);
         shader.setMat4("view", view);
-        // устанавливаем uniform-переменные освещения
+
         shader.setVec3("viewPos", camera.Position);
         shader.setVec3("lightPos", lightPos);
         shader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, woodTexture);
+        glBindTexture(GL_TEXTURE_2D, briksTexture);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, depthMap);
         renderScene(shader);
-
-      /*  // рендеринг на плоскости карты глубины для наглядной отладки
-        // ---------------------------------------------
-        debugDepthQuad.use();
-        debugDepthQuad.setFloat("near_plane", near_plane);
-        debugDepthQuad.setFloat("far_plane", far_plane);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, depthMap);
-        //renderQuad();*/
 
         // glfw: обмен содержимым переднего и заднего буферов. Опрос событий Ввода\Ввывода
         glfwSwapBuffers(window);
