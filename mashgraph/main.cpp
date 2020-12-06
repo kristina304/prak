@@ -41,7 +41,6 @@ unsigned int planeVAO;
 int main()
 {
     // glfw: инициализация и конфигурирование
-    // ------------------------------
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -49,7 +48,6 @@ int main()
 
 
     // glfw: создание окна
-    // --------------------
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "MASHGRAPH_KRISTINA", NULL, NULL);
     if (window == NULL)
     {
@@ -66,7 +64,6 @@ int main()
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // glad: загрузка всех указателей на OpenGL-функции
-    // ---------------------------------------
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
@@ -74,17 +71,14 @@ int main()
     }
 
     // конфигурирование глобального состояния OpenGL
-    // -----------------------------
     glEnable(GL_DEPTH_TEST);
 
-    // компилирование нашей шейдерной программы
-    // -------------------------
+    // компилирование шейдерной программы
     Shader shader("shadow_mapping.vs", "shadow_mapping.fs");
     Shader simpleDepthShader("shadow_mapping_depth.vs", "shadow_mapping_depth.fs");
     Shader debugDepthQuad("debug_quad.vs", "debug_quad_depth.fs");
 
     // установка вершинных данных (буффера(-ов)) и настройка вершинных атрибутов
-    // ------------------------------------------------------------------
     float planeVertices[] = {
         // координаты            // нормали         // текстурные координаты
          25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,   1.0f,  0.0f,
@@ -111,13 +105,9 @@ int main()
     glBindVertexArray(0);
 
     // загрузка текстур
-    // -------------
     unsigned int woodTexture = loadTexture("wood.png");
-    unsigned int diffuseMap = loadTexture("brickwall.jpg");
-    unsigned int normalMap = loadTexture("brickwall_normal.jpg");
 
     // настраиваем карту глубины FBO
-    // -----------------------
     const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
     unsigned int depthMapFBO;
     glGenFramebuffers(1, &depthMapFBO);
@@ -141,40 +131,29 @@ int main()
 
 
     // конфигурация шейдеров
-    // --------------------
     shader.use();
     shader.setInt("diffuseTexture", 0);
     shader.setInt("shadowMap", 1);
-    shader.setInt("normalMap", 2);
-
     debugDepthQuad.use();
     debugDepthQuad.setInt("depthMap", 0);
 
     // параметры освещения
-    // -------------
     glm::vec3 lightPos(-2.0f, 4.0f, -1.0f);
 
     // цикл рендеринга
-    // -----------
     while (!glfwWindowShouldClose(window))
     {
-        // логическая часть работы со временем для каждого кадра
-        // --------------------
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        // обработка ввода
-        // -----
         processInput(window);
 
-        // рендер
-        // ------
+        // рендеринг
         glClearColor(0.15f, 0.15f, 0.15f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // 1. рендеринг глубины сцены в текстуру (вид - с позиции источника света)
-        // --------------------------------------------------------------
         glm::mat4 lightProjection, lightView;
         glm::mat4 lightSpaceMatrix;
         float near_plane = 1.0f, far_plane = 7.5f;
@@ -199,7 +178,6 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // 2. рендерим сцену как обычно, но используем при этом сгенерированную карту глубины/тени 
-        // --------------------------------------------------------------
         glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         shader.use();
@@ -217,23 +195,19 @@ int main()
         glBindTexture(GL_TEXTURE_2D, depthMap);
         renderScene(shader);
 
-        // рендеринг на плоскости карты глубины для наглядной отладки
+      /*  // рендеринг на плоскости карты глубины для наглядной отладки
         // ---------------------------------------------
         debugDepthQuad.use();
         debugDepthQuad.setFloat("near_plane", near_plane);
         debugDepthQuad.setFloat("far_plane", far_plane);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, depthMap);
-        //renderQuad();
+        //renderQuad();*/
 
-        // glfw: обмен содержимым переднего и заднего буферов. Опрос событий Ввода\Ввывода (была ли нажата/отпущена кнопка, перемещен курсор мыши и т.п.)
-        // -------------------------------------------------------------------------------
+        // glfw: обмен содержимым переднего и заднего буферов. Опрос событий Ввода\Ввывода
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-
-    // опционально: освобеждение памяти, выделенной под ресурсы
-    // ------------------------------------------------------------------------
     glDeleteVertexArrays(1, &planeVAO);
     glDeleteBuffers(1, &planeVBO);
 
@@ -241,8 +215,7 @@ int main()
     return 0;
 }
 
-// рендеринг 3D сцены
-// --------------------
+// рендеринг сцены
 void renderScene(const Shader& shader)
 {
     // пол
@@ -250,7 +223,7 @@ void renderScene(const Shader& shader)
     shader.setMat4("model", model);
     glBindVertexArray(planeVAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
-    // ящики
+    // кубики
     model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.0f, 1.5f, 0.0));
     model = glm::scale(model, glm::vec3(0.5f));
@@ -271,7 +244,6 @@ void renderScene(const Shader& shader)
 
 
 // renderCube() рендерит 1x1 3D-ящик в NDC.
-// -------------------------------------------------
 unsigned int cubeVAO = 0;
 unsigned int cubeVBO = 0;
 void renderCube()
@@ -346,7 +318,6 @@ void renderCube()
 }
 
 // renderQuad() рендерит 1x1 XY прямоугольник/плоскость в NDC
-// -----------------------------------------
 unsigned int quadVAO = 0;
 unsigned int quadVBO;
 void renderQuad()
@@ -376,8 +347,7 @@ void renderQuad()
     glBindVertexArray(0);
 }
 
-// Обработка всех событий ввода: запрос GLFW о нажатии/отпускании кнопки мыши в данном кадре и соответствующая обработка данных событий
-// ---------------------------------------------------------------------------------------------------------
+
 void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -393,8 +363,7 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(RIGHT, deltaTime);
 }
 
-// glfw: всякий раз, когда изменяются размеры окна (пользователем или опер. системой), вызывается данная функция
-// ---------------------------------------------------------------------------------------------
+// glfw: всякий раз, когда изменяются размеры окна 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     // убеждаемся, что вьюпорт соответствует новым размерам окна; обратите внимание,
@@ -403,7 +372,6 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 // glfw: всякий раз, когда перемещается мышь, вызывается данная callback-функция
-// -------------------------------------------------------
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
     if (firstMouse)
@@ -422,15 +390,12 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
-// glfw: всякий раз, когда прокручивается колесико мыши, вызывается данная callback-функция
-// ----------------------------------------------------------------------
+// glfw: всякий раз, когда прокручивается колесико мыши
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     camera.ProcessMouseScroll(yoffset);
 }
 
-// вспомогательная функция загрузки 2D-текстур из файла
-// ---------------------------------------------------
 unsigned int loadTexture(char const* path)
 {
     unsigned int textureID;

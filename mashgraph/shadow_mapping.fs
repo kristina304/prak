@@ -10,7 +10,6 @@ in VS_OUT {
 
 uniform sampler2D diffuseTexture;
 uniform sampler2D shadowMap;
-uniform sampler2D normalMapping;
 
 uniform vec3 lightPos;
 uniform vec3 viewPos;
@@ -52,13 +51,9 @@ float ShadowCalculation(vec4 fragPosLightSpace)
 }
 
 void main()
-{   
-    // получаем нормаль из карты нормалей с диапазоном [0,1]
-    vec3 normal = texture(normalMapping, fs_in.TexCoords).rgb;
-    // Переводим вектор нормали в диапазон [-1,1]
-    normal = normalize(normal * 2.0 - 1.0);
-
+{           
     vec3 color = texture(diffuseTexture, fs_in.TexCoords).rgb;
+    vec3 normal = normalize(fs_in.Normal);
     vec3 lightColor = vec3(0.4);
     // фоновая составляющая
     vec3 ambient = 0.4 * color;
