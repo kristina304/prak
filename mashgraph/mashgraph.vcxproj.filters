@@ -26,5 +26,36 @@
     <ClInclude Include="camera.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="debug_quad.vs">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="debug_quad_depth.fs">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="shadow_mapping.vs">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="shadow_mapping.fs">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="shadow_mapping_depth.vs">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="shadow_mapping_depth.fs">
+      <Filter>Исходные файлы</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="wood.png">
+      <Filter>Исходные файлы</Filter>
+    </Image>
   </ItemGroup>
 </Project>
