@@ -32,6 +32,9 @@
     <ClInclude Include="shader.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="debug_quad.vs">
@@ -52,12 +55,45 @@
     <None Include="shadow_mapping_depth.fs">
       <Filter>Исходные файлы</Filter>
     </None>
+    <None Include="SB.vs">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="SB.fs">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="mirror.vs">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="mirror.fs">
+      <Filter>Исходные файлы</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="wood.png">
       <Filter>Исходные файлы</Filter>
     </Image>
     <Image Include="brickwall.jpg">
+      <Filter>Исходные файлы</Filter>
+    </Image>
+    <Image Include="right.jpg">
+      <Filter>Исходные файлы</Filter>
+    </Image>
+    <Image Include="left.jpg">
+      <Filter>Исходные файлы</Filter>
+    </Image>
+    <Image Include="top.jpg">
+      <Filter>Исходные файлы</Filter>
+    </Image>
+    <Image Include="bottom.jpg">
+      <Filter>Исходные файлы</Filter>
+    </Image>
+    <Image Include="front.jpg">
+      <Filter>Исходные файлы</Filter>
+    </Image>
+    <Image Include="back.jpg">
+      <Filter>Исходные файлы</Filter>
+    </Image>
+    <Image Include="window.png">
       <Filter>Исходные файлы</Filter>
     </Image>
   </ItemGroup>

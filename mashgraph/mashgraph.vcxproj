@@ -150,19 +150,31 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="mesh.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="debug_quad.vs" />
     <None Include="debug_quad_depth.fs" />
+    <None Include="SB.fs" />
+    <None Include="SB.vs" />
     <None Include="shadow_mapping.fs" />
     <None Include="shadow_mapping.vs" />
     <None Include="shadow_mapping_depth.fs" />
     <None Include="shadow_mapping_depth.vs" />
+    <None Include="mirror.fs" />
+    <None Include="mirror.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="back.jpg" />
+    <Image Include="bottom.jpg" />
     <Image Include="brickwall.jpg" />
+    <Image Include="front.jpg" />
+    <Image Include="left.jpg" />
+    <Image Include="right.jpg" />
+    <Image Include="top.jpg" />
+    <Image Include="window.png" />
     <Image Include="wood.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

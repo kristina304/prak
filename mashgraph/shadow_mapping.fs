@@ -16,9 +16,9 @@ uniform vec3 viewPos;
 
 float ShadowCalculation(vec4 fragPosLightSpace)
 {
-    // выполняем деление перспективы
+    //преобразование координат отсеченного пространства из [-w,w] в [-1,1]
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
-    // трансформируем в диапазон [0,1]
+    // трансформируем в диапазон [0,1] для использования карты глубины
     projCoords = projCoords * 0.5 + 0.5;
     // получаем наиболее близкое значение глубины исходя из перспективы глазами источника света (используя в диапазон [0,1] fragPosLight в качестве координат)
     float closestDepth = texture(shadowMap, projCoords.xy).r; 
