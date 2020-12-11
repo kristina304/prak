@@ -93,8 +93,5 @@
     <Image Include="back.jpg">
       <Filter>Исходные файлы</Filter>
     </Image>
-    <Image Include="window.png">
-      <Filter>Исходные файлы</Filter>
-    </Image>
   </ItemGroup>
 </Project>

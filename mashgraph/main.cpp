@@ -102,17 +102,6 @@ int main()
          5.0f, -0.5f, -5.0f,  0.0f, 1.0f, 0.0f,   1.0f,  1.0f
     };
 
-   /* float transparentVertices[] = {//окна
-        // координаты         // текстурные координаты (y-координаты поменялись местами, потому что текстура перевернута вверх ногами)
-        0.0f,  0.5f,  0.0f,  0.0f,  0.0f,
-        0.0f, -0.5f,  0.0f,  0.0f,  1.0f,
-        1.0f, -0.5f,  0.0f,  1.0f,  1.0f,
-
-        0.0f,  0.5f,  0.0f,  0.0f,  0.0f,
-        1.0f, -0.5f,  0.0f,  1.0f,  1.0f,
-        1.0f,  0.5f,  0.0f,  1.0f,  0.0f
-    };*/
-
     float mirrorVertices[] = {
         // positions          // normals
         -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
@@ -216,20 +205,6 @@ int main()
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(2);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-    
-
-   /* // VAO прозрачности
-    unsigned int transparentVAO, transparentVBO;
-    glGenVertexArrays(1, &transparentVAO);
-    glGenBuffers(1, &transparentVBO);
-    glBindVertexArray(transparentVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, transparentVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(transparentVertices), transparentVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    glBindVertexArray(0);*/
 
     // skybox VAO
     unsigned int skyboxVAO, skyboxVBO;
@@ -327,14 +302,6 @@ int main()
 
         processInput(window);
 
-      /*  // sort the transparent windows before rendering
-        std::map<float, glm::vec3> sorted;
-        for (unsigned int i = 0; i < windows.size(); i++)
-        {
-            float distance = glm::length(camera.Position - windows[i]);
-            sorted[distance] = windows[i];
-        }*/
-
         // рендеринг
         glClearColor(0.159f, 0.159f, 0.159f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -390,10 +357,7 @@ int main()
 
         mirror.use();
         glm::mat4 model = glm::mat4(1.0f);
-        //glm::mat4 view = camera.GetViewMatrix();
-        //glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         model = glm::translate(model, glm::vec3(3.0f, 2.5f, 3.0));
-        //model = glm::scale(model, glm::vec3(0.5f));
         mirror.setMat4("model", model);
         mirror.setMat4("view", view);
         mirror.setMat4("projection", projection);
@@ -404,21 +368,6 @@ int main()
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
 
-      /*  // окна
-        transper.use();
-        transper.setMat4("projection", projection);
-        transper.setMat4("view", view);
-        glBindVertexArray(transparentVAO);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, windowTexture);
-        for (std::map<float, glm::vec3>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it)
-        {
-            glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, it->second);
-            transper.setMat4("model", model);
-            glDrawArrays(GL_TRIANGLES, 0, 6);
-        }
-    */
         // draw skybox as last
         glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
         landscape.use();

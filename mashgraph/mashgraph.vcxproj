@@ -174,7 +174,6 @@
     <Image Include="left.jpg" />
     <Image Include="right.jpg" />
     <Image Include="top.jpg" />
-    <Image Include="window.png" />
     <Image Include="wood.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
