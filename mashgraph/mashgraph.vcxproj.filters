@@ -67,12 +67,15 @@
     <None Include="mirror.fs">
       <Filter>Исходные файлы</Filter>
     </None>
+    <None Include="normal.vs">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="normal.fs">
+      <Filter>Исходные файлы</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="wood.png">
-      <Filter>Исходные файлы</Filter>
-    </Image>
-    <Image Include="brickwall.jpg">
       <Filter>Исходные файлы</Filter>
     </Image>
     <Image Include="right.jpg">
@@ -91,6 +94,12 @@
       <Filter>Исходные файлы</Filter>
     </Image>
     <Image Include="back.jpg">
+      <Filter>Исходные файлы</Filter>
+    </Image>
+    <Image Include="normal.jpg">
+      <Filter>Исходные файлы</Filter>
+    </Image>
+    <Image Include="brickwall.jpg">
       <Filter>Исходные файлы</Filter>
     </Image>
   </ItemGroup>

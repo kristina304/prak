@@ -157,6 +157,8 @@
   <ItemGroup>
     <None Include="debug_quad.vs" />
     <None Include="debug_quad_depth.fs" />
+    <None Include="normal.fs" />
+    <None Include="normal.vs" />
     <None Include="SB.fs" />
     <None Include="SB.vs" />
     <None Include="shadow_mapping.fs" />
@@ -172,6 +174,7 @@
     <Image Include="brickwall.jpg" />
     <Image Include="front.jpg" />
     <Image Include="left.jpg" />
+    <Image Include="normal.jpg" />
     <Image Include="right.jpg" />
     <Image Include="top.jpg" />
     <Image Include="wood.png" />
