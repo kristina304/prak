@@ -221,7 +221,7 @@ int main()
     parallax.setInt("normalMap", 1);
     parallax.setInt("depthMap", 2);
 
-    glm::vec3 lightPos(-2.0f, 5.0f, -1.0f);
+    glm::vec3 lightPos(-2.0f, 4.0f, -1.0f);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -365,7 +365,7 @@ void renderNormal(const Shader& shader)
 void renderMirror(const Shader& shader)
 {
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(-2.5f, 4.5f, 5.0));
+    model = glm::translate(model, glm::vec3(-2.5f, 3.5f, 5.0));
     shader.setMat4("model", model);
     Mirror();
 }
