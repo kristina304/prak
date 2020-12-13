@@ -155,22 +155,23 @@
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="debug_quad.vs" />
-    <None Include="debug_quad_depth.fs" />
     <None Include="normal.fs" />
     <None Include="normal.vs" />
+    <None Include="parallax.fs" />
+    <None Include="parallax.vs" />
     <None Include="SB.fs" />
     <None Include="SB.vs" />
-    <None Include="shadow_mapping.fs" />
-    <None Include="shadow_mapping.vs" />
-    <None Include="shadow_mapping_depth.fs" />
-    <None Include="shadow_mapping_depth.vs" />
+    <None Include="shadow.fs" />
+    <None Include="shadow.vs" />
+    <None Include="shadowdepth.fs" />
+    <None Include="shadowdepth.vs" />
     <None Include="mirror.fs" />
     <None Include="mirror.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="back.jpg" />
     <Image Include="bottom.jpg" />
+    <Image Include="brickdis.jpg" />
     <Image Include="brickwall.jpg" />
     <Image Include="front.jpg" />
     <Image Include="left.jpg" />

@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\shaders">
+      <UniqueIdentifier>{c9abd642-a7d4-4b56-b1d1-82539e37fab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\pictures">
+      <UniqueIdentifier>{e65718e9-31c5-4835-a119-174ff604e46f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -23,9 +29,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="camera.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="stb_image.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
@@ -35,72 +38,78 @@
     <ClInclude Include="mesh.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="debug_quad.vs">
-      <Filter>Исходные файлы</Filter>
-    </None>
-    <None Include="debug_quad_depth.fs">
-      <Filter>Исходные файлы</Filter>
-    </None>
-    <None Include="shadow_mapping.vs">
-      <Filter>Исходные файлы</Filter>
-    </None>
-    <None Include="shadow_mapping.fs">
-      <Filter>Исходные файлы</Filter>
-    </None>
-    <None Include="shadow_mapping_depth.vs">
-      <Filter>Исходные файлы</Filter>
-    </None>
-    <None Include="shadow_mapping_depth.fs">
-      <Filter>Исходные файлы</Filter>
-    </None>
-    <None Include="SB.vs">
-      <Filter>Исходные файлы</Filter>
-    </None>
-    <None Include="SB.fs">
-      <Filter>Исходные файлы</Filter>
+    <None Include="mirror.fs">
+      <Filter>Исходные файлы\shaders</Filter>
     </None>
     <None Include="mirror.vs">
-      <Filter>Исходные файлы</Filter>
-    </None>
-    <None Include="mirror.fs">
-      <Filter>Исходные файлы</Filter>
-    </None>
-    <None Include="normal.vs">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\shaders</Filter>
     </None>
     <None Include="normal.fs">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\shaders</Filter>
+    </None>
+    <None Include="normal.vs">
+      <Filter>Исходные файлы\shaders</Filter>
+    </None>
+    <None Include="parallax.fs">
+      <Filter>Исходные файлы\shaders</Filter>
+    </None>
+    <None Include="parallax.vs">
+      <Filter>Исходные файлы\shaders</Filter>
+    </None>
+    <None Include="SB.fs">
+      <Filter>Исходные файлы\shaders</Filter>
+    </None>
+    <None Include="SB.vs">
+      <Filter>Исходные файлы\shaders</Filter>
+    </None>
+    <None Include="shadow.vs">
+      <Filter>Исходные файлы\shaders</Filter>
+    </None>
+    <None Include="shadow.fs">
+      <Filter>Исходные файлы\shaders</Filter>
+    </None>
+    <None Include="shadowdepth.vs">
+      <Filter>Исходные файлы\shaders</Filter>
+    </None>
+    <None Include="shadowdepth.fs">
+      <Filter>Исходные файлы\shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="wood.png">
-      <Filter>Исходные файлы</Filter>
-    </Image>
-    <Image Include="right.jpg">
-      <Filter>Исходные файлы</Filter>
-    </Image>
-    <Image Include="left.jpg">
-      <Filter>Исходные файлы</Filter>
-    </Image>
-    <Image Include="top.jpg">
-      <Filter>Исходные файлы</Filter>
+    <Image Include="back.jpg">
+      <Filter>Исходные файлы\pictures</Filter>
     </Image>
     <Image Include="bottom.jpg">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\pictures</Filter>
     </Image>
-    <Image Include="front.jpg">
-      <Filter>Исходные файлы</Filter>
-    </Image>
-    <Image Include="back.jpg">
-      <Filter>Исходные файлы</Filter>
-    </Image>
-    <Image Include="normal.jpg">
-      <Filter>Исходные файлы</Filter>
+    <Image Include="brickdis.jpg">
+      <Filter>Исходные файлы\pictures</Filter>
     </Image>
     <Image Include="brickwall.jpg">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\pictures</Filter>
+    </Image>
+    <Image Include="front.jpg">
+      <Filter>Исходные файлы\pictures</Filter>
+    </Image>
+    <Image Include="left.jpg">
+      <Filter>Исходные файлы\pictures</Filter>
+    </Image>
+    <Image Include="normal.jpg">
+      <Filter>Исходные файлы\pictures</Filter>
+    </Image>
+    <Image Include="right.jpg">
+      <Filter>Исходные файлы\pictures</Filter>
+    </Image>
+    <Image Include="top.jpg">
+      <Filter>Исходные файлы\pictures</Filter>
+    </Image>
+    <Image Include="wood.png">
+      <Filter>Исходные файлы\pictures</Filter>
     </Image>
   </ItemGroup>
 </Project>
